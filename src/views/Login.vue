@@ -1,24 +1,37 @@
 <template>
-    <div>
-        <form v-if="!isReg">
-            <div>用户名</div>
-            <input type="text" v-model="name"/>
-            <div>密码</div>
-            <input type="password" v-model="password"/>
-            <button type="button" @click="login()">登录</button>
-            <button type="button" @click="reg()">注册</button>
-        </form>
-        <form v-else>
-            <div>用户名</div>
-            <input type="text" v-model="name"/>
-            <div>密码</div>
-            <input type="password" v-model="password"/>
-           <div> 确认密码</div>
-            <input type="password" v-model="repeat"/>
-            <button type="button" @click="addUser()">确定</button>
-            <button type="button" @click="cancel()">取消</button>
-        </form>
+    <div class="loginPage">
+        <el-form  label-width="80px" v-if="!isReg" label-position="left">
+            <el-form-item>
+                <el-input placeholder="请输入用户名" v-model="name">
+                    <template slot="prepend">用户名</template>
+                </el-input>
+            </el-form-item>
 
+            <el-form-item>
+                <el-input type="password" placeholder="请输入密码" v-model="password">
+                    <template slot="prepend">密  码</template>
+                </el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" round="true" @click="login">登录</el-button>
+                <el-button type="warning" round="true" @click="reg">注册</el-button>
+            </el-form-item>
+        </el-form>
+        <el-form status-icon label-width="80px" v-else>
+            <el-form-item label="用户名" prop="name">
+                <el-input v-model="name" placeholder="请输入用户名"></el-input>
+            </el-form-item>
+            <el-form-item label="密码" prop="password">
+                <el-input type="password" v-model="password" placeholder="请输入密码"></el-input>
+            </el-form-item>
+            <el-form-item label="确认密码" prop="repeat">
+                <el-input type="password" v-model="repeat" placeholder="请再次输入密码"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="addUser">确定</el-button>
+                <el-button type="info" @click="cancel">取消</el-button>
+            </el-form-item>
+        </el-form>
     </div>
 </template>
 
@@ -67,6 +80,10 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
+.loginPage{
+    width 450px
+    margin 150px auto
+}
 
 </style>
