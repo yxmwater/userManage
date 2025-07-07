@@ -1,40 +1,46 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from './views/Login.vue'
-import Home from './views/Home.vue'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-    linkActiveClass:'active',
+  linkActiveClass: 'active',
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: Login
+      redirect: '/home'
     },
     {
       path: '/home',
       name: 'home',
-      component: Home,
-      children:[
-          {
-            path:'list',
-              name:'list',
-              component:()=>import(/*webpackChunkName:"list"*/'./views/List.vue')
-          },
-          {
-              path:'user',
-              name:'user',
-              component:()=>import(/*webpackChunkName:"user"*/'./views/User.vue')
-          },
-      ]
-    },{
-          path: '/add',
-          name: 'add',
-          component: ()=>import(/*webpackChunkName:"user"*/'./views/Add.vue')
-      },
+      component: () => import('./views/Home.vue')
+    },
+    {
+      path: '/health',
+      name: 'health',
+      component: () => import('./views/Health.vue')
+    },
+    {
+      path: '/medicine',
+      name: 'medicine',
+      component: () => import('./views/Medicine.vue')
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: () => import('./views/Chat.vue')
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: () => import('./views/Contact.vue')
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: () => import('./views/Profile.vue')
+    }
   ]
 })
